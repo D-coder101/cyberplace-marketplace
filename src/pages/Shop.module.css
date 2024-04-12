@@ -1,0 +1,14 @@
+.shop {
+    display: grid;
+    padding-top: 30px;
+    margin-bottom: 20px;
+    gap: 20px;
+    /* background-color: red; */
+    width: 100%;
+}
+.shopContainer {
+    padding: 0px 50px;
+}
+.productAmount {
+    font-weight: var(--font-medium);
+}

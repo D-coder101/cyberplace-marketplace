@@ -1,0 +1,38 @@
+
+/* Form */
+
+/* form > input {
+  width: 100%;
+  padding: 10px;
+  border: solid 1.5px #d3d3d3;
+  border-radius: 5px;
+  outline: none;
+} */
+/* form > select {
+  width: 100%;
+  padding: 10px;
+  border: solid 1.5px #d3d3d3;
+  border-radius: 5px;
+  outline: none;
+  margin-bottom: 15px;
+} */
+/* input[type="password"] {
+  margin-bottom: 0px;
+} */
+
+.error-text {
+  color: red;
+  text-align: right;
+  visibility: hidden;
+  /* padding: 1px; */
+}
+.Header {
+  color: #181b24;
+  margin-bottom: 19px;
+}
+/* a {
+  color: #388dcc;
+}
+a:hover {
+  color: #388ddc;
+} */

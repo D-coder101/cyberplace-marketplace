@@ -1,0 +1,79 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  font-family: "Open Sans", sans-serif;
+  font-weight: var(--font-medium);
+  height: 100vh;
+  background-image: url("../assets/Registration-images/registration-background-image.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+.advertSection,
+.formSection {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  /* background-color: steelblue; */
+}
+.advertSection {
+  padding: 50px 0px 0px 50px;
+}
+.logo {
+  height: 35px;
+  margin-bottom: 15px;
+}
+.header {
+  margin-bottom: 15px;
+}
+.errorText {
+  color: red;
+  text-align: right;
+  visibility: hidden;
+  /* padding: 1px; */
+}
+form > input {
+  width: 100%;
+  padding: 10px;
+  border: solid 1.5px #d3d3d3;
+  border-radius: 5px;
+  outline: none;
+}
+input[type="password"] {
+  margin-bottom: 0px;
+}
+.customerForm {
+    width: 400px;
+  text-align: center;
+  padding: 20px 28px;
+  background-color: white;
+  box-shadow: var(--box-shadow);
+  font-family: "Nobile", sans-serif;
+  font-weight: var(--font-medium);
+}
+.validate {
+  display: flex;
+  margin-bottom: 20px;
+  color: #388ddc;
+  font-size: 12px;
+}
+
+@media (max-width: 1200px) {
+  .container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .advertSection {
+    display: none;
+  }
+  .customerForm {
+    margin: 10px;
+  }
+}

@@ -1,0 +1,125 @@
+.home {
+  display: grid;
+  height: 85vh;
+  padding-top: 30px;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 55% 42%;
+  gap: 20px;
+  /* background-color: var(--bg-white); */
+}
+.banner,
+.showcase2,
+.showcase3,
+.showcase4 {
+  background-color: steelblue;
+  /* border: 1px solid lightblue; */
+}
+.showcase1,
+.showcase2,
+.showcase3,
+.showcase4 {
+  box-shadow: var(--box-shadow);
+}
+.nav {
+  grid-column: 2 / 3;
+  font-weight: var(--font-medium);
+  background-color: var(--bg-light);
+  height: 100%;
+  display: grid;
+  align-items: center;
+}
+.banner {
+  grid-column: span 3;
+}
+
+/* showcase*/
+.showcase1 {
+  grid-column: 2 / 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--bg-white);
+}
+.showcase1 img,
+.showcase2 img,
+.showcase3 img,
+.showcase4 img {
+  max-width: 100%;
+  height: 80%;
+}
+.showcase2,
+.showcase3,
+.showcase4 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--bg-white);
+}
+
+/* list */
+
+.list li {
+  list-style-type: none;
+  padding: 8px 15px 0px 15px;
+  cursor: pointer;
+}
+.list li:hover {
+  color: var(--text-primary);
+}
+
+/*banner*/
+.banner {
+  box-shadow: var(--box-shadow);
+  background-color: var(--bg-white);
+  position: relative;
+}
+.banner img {
+  width: 100%;
+  height: 100%;
+}
+.adverttext {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--bg-white);
+  color: #042f46;
+  padding: 10px;
+  width: 70%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+
+
+@media (max-width: 1200px) {
+  .home {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .banner {
+    grid-column: span 2;
+  }
+  .showcase4 {
+    grid-column: 2;
+  }
+ .adverttext {
+  font-size: 15px;
+ }
+}
+
+@media (max-width: 1040px) {
+  .home {
+    grid-template-columns: repeat(2, 1fr);
+    margin: 0 15px 15px 15px;
+  }
+
+  .nav {
+    display: none;
+  }
+
+  .showcase1, .showcase3 {
+    grid-column: 1;
+  }
+
+}
