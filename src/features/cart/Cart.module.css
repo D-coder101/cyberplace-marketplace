@@ -34,7 +34,6 @@
   align-items: center;
   gap: 10px;
   padding: 10px 0px;
-  margin-bottom: 50px;
   border-bottom: 2px solid var(--border-fade);
 }
 
@@ -93,6 +92,7 @@
 
 /* Cart Pay */
 .cartPayContainer {
+  margin: 50px 0px;
   font-weight: var(--font-medium);
   display: flex;
   flex-direction: column;

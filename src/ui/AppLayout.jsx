@@ -1,14 +1,17 @@
 import { Outlet } from "react-router-dom";
 import Header from "../components/Header";
+import { CartProvider } from "../contexts/CartContext";
 
 function AppLayout() {
   return (
     <div className="App">
-      <Header />
+      <CartProvider>
+        <Header />
 
-      <main>
-        <Outlet />
-      </main>
+        <main>
+          <Outlet />
+        </main>
+      </CartProvider>
     </div>
   );
 }

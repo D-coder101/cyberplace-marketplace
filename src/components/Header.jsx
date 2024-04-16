@@ -13,6 +13,8 @@ import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
 import Button from "../ui/Button";
 import { useState } from "react";
+import { Badge } from "antd";
+import { useCarts } from "../contexts/CartContext";
 
 const categories = [
   { data: "Fashion" },
@@ -28,10 +30,15 @@ const categories = [
 
 function Header() {
   const [showSideNav, setShowSideNav] = useState(false);
+  const { cart } = useCarts()
+  const numCart = cart?.length
+  
+console.log(cart)
 
   const handleShowSideNav = () => {
     setShowSideNav(!showSideNav);
   };
+
   const handleCloseSidNav = () => {
     setShowSideNav(false);
   };
@@ -72,14 +79,17 @@ function Header() {
             fontSize="12px"
           >
             <Link to="/shop" className="cta">
-            Setup Your Store for Free
+              Setup Your Store for Free
             </Link>
           </Button>
           <div className={styles.user}>
             <p>Hello Adanna,</p>
             <span className={styles.icons}>
               <UserOutlined />
-              <ShoppingCartOutlined />
+              <span>
+                <ShoppingCartOutlined />
+                <Badge count={numCart} size="small" className={styles.badge} />
+              </span>
               <QuestionOutlined />
             </span>
           </div>

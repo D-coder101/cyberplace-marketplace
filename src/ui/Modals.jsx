@@ -4,13 +4,14 @@ import PropTypes from "prop-types";
 import logo from "../assets/Page-images/cyberpay-page-logo.png";
 import brocade_dress from "../assets/Page-images/shop-images/brocade_dress.png";
 import { Link } from "react-router-dom";
-import { Form, Input} from "antd";
+import { Form, Input } from "antd";
 import {
   CalendarOutlined,
   CreditCardOutlined,
   LockOutlined,
 } from "@ant-design/icons";
 import Button from "./Button";
+import { useCarts } from "../contexts/CartContext";
 
 const useStyle = createStyles(({ token }) => ({
   "my-modal-body": {},
@@ -124,6 +125,9 @@ export function AddToCartModal({
   isAddToCartModalOpen,
   handleAddToCartCancel,
 }) {
+  const { cart } = useCarts();
+  const numCart = cart.length;
+
   return (
     <Modal
       title="Item added to your cart"
@@ -135,27 +139,47 @@ export function AddToCartModal({
       width={350}
     >
       <div className="cart--modal">
-        <div className="cart--modal-detail" style={{ display: "flex" }}>
-          <div>
-            <img
-              src={brocade_dress}
-              alt="cart-modal-img"
-              className="cart-modal-img"
-            />
+        {cart[0]?.map((cart) => (
+          <div
+            className="cart--modal-detail"
+            style={{ display: "flex" }}
+            key={cart.id}
+          >
+            <div>
+              <img
+                src={cart?.img}
+                alt="cart-modal-img"
+                className="cart-modal-img"
+              />
+            </div>
+            <div style={{ lineHeight: "35px" }}>
+              <p>{cart.name}</p>
+              <p>Size:{cart.size}</p>
+            </div>
           </div>
-          <div style={{ lineHeight: "35px" }}>
-            <p>Brocade Dress</p>
-            <p>Size: 12</p>
-          </div>
-        </div>
+        ))}
         <button className="view-cart-btn">
           <Link to="/cart" style={{ color: "black" }}>
-            View Cart (3)
+            View Cart ({numCart})
           </Link>
         </button>
-        <Button className="checkout-btn" bgColor="var(--bg-secondary)" textcolor="var(--text-light)" width="100%" padding="10px 20px" boxShadow="var(--box-shadow)">Check out</Button>
+        <Button
+          className="checkout-btn"
+          bgColor="var(--bg-secondary)"
+          textcolor="var(--text-light)"
+          width="100%"
+          padding="10px 20px"
+          boxShadow="var(--box-shadow)"
+        >
+          Check out
+        </Button>
         <div className="continue-container">
-          <button className="continue-btn"><Link to="/shop" style={{color: "var(--text-dark)"}}> Continue Shopping </Link></button>
+          <button className="continue-btn">
+            <Link to="/shop" style={{ color: "var(--text-dark)" }}>
+              {" "}
+              Continue Shopping{" "}
+            </Link>
+          </button>
         </div>
       </div>
     </Modal>
