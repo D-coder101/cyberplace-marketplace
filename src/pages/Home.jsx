@@ -85,7 +85,7 @@ function Home() {
                     <ul>
                       <li style={{ listStyleType: "none" }}>
                         {Array.from({ length: 5 }, (_, i) => (
-                          <p key={i}>Lorem ipsum</p>
+                          <p key={fashion}>Lorem ipsum</p>
                         ))}
                       </li>
                     </ul>

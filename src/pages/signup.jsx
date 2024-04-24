@@ -1,54 +1,44 @@
-import { useState } from "react";
 import { CheckOutlined } from "@ant-design/icons";
 import logo from "../assets/Registration-images/Group2661.png";
 import { Typography } from "antd";
-const { Title } = Typography;
-import { Link } from "react-router-dom";
-// import "./CreateCustomer.css";
+import { Link, useNavigate } from "react-router-dom";
 import Advert from "../ui/AdvertBg";
 import styles from "./signup.module.css";
-import Button from "../ui/Button";
+import { useFormik } from "formik";
+import { basicSchema } from "../schemas";
+// import { useCarts } from "../contexts/CartContext";
+
+const { Title } = Typography;
 
 export default function SignUp() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [password, setPassword] = useState("");
-  const [country, setCountry] = useState("Nigeria");
+  // const {user, setUser } = useCarts()
+  // console.log(user)
 
-  let allErrorText = document.querySelectorAll(".errorText");
-  let allInput = document.querySelectorAll("input");
-  let formContainer = document.querySelector(".form-container");
-  let Email = document.querySelector(".email");
+  const navigate = useNavigate();
 
-  function handleSignUp(e) {
-    e.preventDefault();
-
-    if (!firstName || !lastName || !email || !phoneNumber || !password) {
-      allErrorText.forEach(function (val) {
-        val.style.visibility = "visible";
-      });
-      allInput.forEach(function (val) {
-        val.style.marginBottom = "0px";
-      });
-      return;
-    }
-
-    //hiding error-text
-    allErrorText.forEach(function (val) {
-      val.style.visibility = "hidden";
-    });
-    //hiding form-container
-    formContainer.style.display = "none";
-    // //showing email notification
-    Email.style.display = "block";
-
-    const form = e.target;
-    const formData = new FormData(form);
-    const formJSON = Object.fromEntries(formData);
-    console.log(formJSON);
+  const onSubmit = async (values, actions) => {
+    console.log(values, actions);
+    console.log("submitted");
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    navigate('/login');
+    // setUser(values?.firstName)
+    actions.resetForm();
   }
+
+  const {values, errors, touched, handleBlur, handleChange, handleSubmit} = useFormik({
+    initialValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      phoneNumber: "",
+      password: "",
+      country: "",
+    },
+    validationSchema: basicSchema,
+    onSubmit, 
+  });
+  // console.log(errors);
+  
 
   return (
     <div className={styles.container}>
@@ -65,10 +55,11 @@ export default function SignUp() {
             <p>Let&apos;s get started!</p>
           </div>
 
-          <form method="POST" onSubmit={handleSignUp}>
+          <form method="POST" onSubmit={handleSubmit}>
             <select
-              value={country}
-              onChange={(e) => setCountry(e.target.value)}
+              value={values.country}
+              onChange={handleChange}
+              id="country"
             >
               <option value="nigeria">Nigeria</option>
               <option value="australia">Australia</option>
@@ -77,52 +68,67 @@ export default function SignUp() {
             <input
               type="text"
               name="firstName"
-              value={firstName}
+              id="firstName"
               placeholder="First Name"
-              onChange={(e) => setFirstName(e.target.value)}
+              value={values.firstName}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              className={errors.firstName && touched.firstName ? `${styles.inputError}` : ''}
             />
             <div className={styles.errorText}>
-              <small>firstname is required!</small>
+            {errors.firstName && touched.firstName && <small>{errors.firstName}</small>}
             </div>
             <input
               type="text"
               name="lastName"
-              value={lastName}
               placeholder="Last Name"
-              onChange={(e) => setLastName(e.target.value)}
+              id="lastName"
+              value={values.lastName}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              className={errors.lastName && touched.lastName ? `${styles.inputError}` : ''}
             />
             <div className={styles.errorText}>
-              <small>lastname is required!</small>
+            {errors.lastName && touched.lastName && <small>{errors.lastName}</small>}
             </div>
             <input
               type="email"
               name="email"
-              value={email}
+              id="email"
               placeholder="Email Address"
-              onChange={(e) => setEmail(e.target.value)}
+              value={values.email}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              className={errors.email  && touched.email ? `${styles.inputError}` : ''}
             />
             <div className={styles.errorText}>
-              <small>email is required!</small>
+            {errors.email && touched.email && <small>{errors.email}</small>}
             </div>
             <input
               type="text"
               name="phoneNumber"
-              value={phoneNumber}
+              id="phoneNumber"
               placeholder="Phone Number"
-              onChange={(e) => setPhoneNumber(e.target.value)}
+              value={values.phoneNumber}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              className={errors.phoneNumber && touched.phoneNumber ? `${styles.inputError}` : ''}
             />
             <div className={styles.errorText}>
-              <small>phonenumber is required!</small>
+            {errors.phoneNumber && touched.phoneNumber && <small>{errors.phoneNumber}</small>}
             </div>
             <input
               type="password"
               name="password"
-              value={password}
               placeholder="Password"
-              onChange={(e) => setPassword(e.target.value)}
+              id="password"
+              value={values.password}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              className={errors.password && touched.password ? `${styles.inputError}` : ''}
             />
             <div className={styles.errorText}>
-              <small>password is required!</small>
+            {errors.password && touched.password && <small>{errors.password}</small>}
             </div>
             <div className={styles.validate}>
               <small>
@@ -135,16 +141,25 @@ export default function SignUp() {
                 Special Characters
               </small>
             </div>
-            <Button type="submit" width="100%" bgColor="var(--bg-secondary)"  padding="10px 20px" mb="20px">
-              <Link to="/login" className="cta"> CREATE YOUR ACCOUNT</Link>
-            </Button>
+            <button
+              type="submit"
+              // width="100%"
+              // bgColor="var(--bg-secondary)"
+              // padding="10px 20px"
+              // mb="20px"
+            >
+              {/* <Link to="/login" className="cta"></Link> */}
+              CREATE YOUR ACCOUNT
+            </button>
             <div style={{ textAlign: "left" }}>
               <p>
                 Already have an account?{" "}
-                <span
-                  style={{ color: "#388ddc", cursor: "pointer" }}
-                >
-                  <Link to="/login" className="cta" style={{color: 'var(--text-black)'}}>
+                <span style={{ color: "#388ddc", cursor: "pointer" }}>
+                  <Link
+                    to="/login"
+                    className="cta"
+                    style={{ color: "var(--text-black)" }}
+                  >
                     <b>Sign In</b>
                   </Link>
                 </span>
@@ -156,3 +171,5 @@ export default function SignUp() {
     </div>
   );
 }
+
+

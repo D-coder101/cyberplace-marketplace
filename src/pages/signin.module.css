@@ -37,9 +37,12 @@
 .errorText {
   color: red;
   text-align: right;
-  visibility: hidden;
+  height: 18px;
   /* padding: 1px; */
 }
+.inputError {
+  border-color: red;
+  }
 form > input {
   width: 100%;
   padding: 10px;
@@ -51,7 +54,8 @@ input[type="password"] {
   margin-bottom: 0px;
 }
 .customerForm {
-    width: 400px;
+  width: 320px;
+    max-width: 400px;
   text-align: center;
   padding: 20px 28px;
   background-color: white;
@@ -77,3 +81,9 @@ input[type="password"] {
     margin: 10px;
   }
 }
+
+/* @media (max-width: 768px)  {
+  .advertSection {
+    display: none;
+  }
+} */

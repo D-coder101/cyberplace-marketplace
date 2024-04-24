@@ -30,10 +30,10 @@ const categories = [
 
 function Header() {
   const [showSideNav, setShowSideNav] = useState(false);
-  const { cart } = useCarts()
-  const numCart = cart?.length
-  
-console.log(cart)
+  const { cart } = useCarts();
+  const numCart = cart?.length;
+
+  // console.log(cart);
 
   const handleShowSideNav = () => {
     setShowSideNav(!showSideNav);
@@ -85,7 +85,9 @@ console.log(cart)
           <div className={styles.user}>
             <p>Hello Adanna,</p>
             <span className={styles.icons}>
-              <UserOutlined />
+              <Link to="/signup" className={styles.link}>
+                <UserOutlined />
+              </Link>
               <span>
                 <ShoppingCartOutlined />
                 <Badge count={numCart} size="small" className={styles.badge} />

@@ -5,7 +5,7 @@ Button.propTypes = {
   onClick: PropTypes.func,
   bgColor: PropTypes.any,
   textcolor: PropTypes.any,
-  width: PropTypes.number,
+  width: PropTypes.string,
   borderRad: PropTypes.string,
   boxShadow: PropTypes.string,
   padding: PropTypes.string,
@@ -30,6 +30,7 @@ export default function Button({
   return (
     <button
       onClick={onClick}
+      type="submit"
       style={{
         backgroundColor: bgColor,
         color: textcolor,

@@ -42,43 +42,8 @@ const router = createBrowserRouter([
         path: "/product",
         element: <Product />,
       },
-    
-
-      // {
-      //   path: "/vendor/registration",
-      //   element: <FormSteps />,
-      // },
-      // {
-      //   path: "/login",
-      //   element: <SignIn />,
-      // },
-      // {
-      //   path: "/shipping",
-      //   element: <Shipping />,
-      // },
     ],
   },
-
-  // {
-  //   path: "/",
-  //   element: <CreateVendor />,
-  // },
-  // {
-  //   path: "/vendor/signup",
-  //   element: <CreateVendor />,
-  // },
-  // {
-  //   path: "/vendor/registration",
-  //   element: <FormSteps />,
-  // },
-  // {
-  //   path: "/login",
-  //   element: <SignIn />,
-  // },
-  // {
-  //   path: "/home",
-  //   element: <Home />,
-  // },
 ]);
 
 function App() {

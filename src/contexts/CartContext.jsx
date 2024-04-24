@@ -32,6 +32,7 @@ const shopData = [
 
 function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
+  // const [user, setUser] = useState("")
   const products = shopData;
 
 
@@ -62,6 +63,7 @@ function CartProvider({ children }) {
     );
     setCart(updatedCart);
   };
+
   const handleDeleteItemsFromCart = (itemId) => {
     const updatedCart = cart.map(innerArray =>
       innerArray.filter(item => item.id !== itemId)
@@ -78,6 +80,8 @@ function CartProvider({ children }) {
         increaseQuantity,
         decreaseQuantity,
         cart,
+        // user,
+        // setUser,
         handleAddItemsToCart,
         handleDeleteItemsFromCart,
       }}

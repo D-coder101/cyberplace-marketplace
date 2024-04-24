@@ -1,40 +1,42 @@
-import { useState } from "react";
 // import { Row, Col } from "antd";
 import logo from "../assets/Registration-images/Group2661.png";
 import { Typography } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const { Title } = Typography;
 import Advert from "../ui/AdvertBg";
 import "./CreateCustomer.css";
+
 import styles from "./signin.module.css";
 import Button from "../ui/Button";
+import { useFormik } from "formik";
+import { signInSchema } from "../schemas";
 
-let allErrorText = document.querySelectorAll(".error-text");
-let allInput = document.querySelectorAll("input");
 
 export default function SignIn() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
-  function handleSignIn(e) {
-    e.preventDefault();
-    if (!email || !password) {
-      allErrorText.forEach(function (val) {
-        val.style.visibility = "visible";
-      });
-      allInput.forEach(function (val) {
-        val.style.marginBottom = "0px";
-      });
-      return;
-    }
-    allErrorText.forEach(function (val) {
-      val.style.visibility = "hidden";
-    });
-    const form = e.target;
-    const formData = new FormData(form);
-    const formJSON = Object.fromEntries(formData);
-    console.log(formJSON);
+  const navigate = useNavigate();
+
+  const onSubmit = async (values, actions) => {
+    console.log(values, actions);
+    console.log("submitted");
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    navigate('/');
+    // setUser(values?.firstName)
+    actions.resetForm();
   }
+
+  const {values, errors, touched, handleBlur, handleChange, handleSubmit} = useFormik({
+    initialValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      phoneNumber: "",
+      password: "",
+      country: "",
+    },
+    validationSchema: signInSchema,
+    onSubmit, 
+  });
 
   return (
     <div className={styles.container}>
@@ -51,31 +53,36 @@ export default function SignIn() {
             <p>Log in to your account</p>
           </div>
 
-          <form method="POST" onSubmit={handleSignIn}>
-            <input
+          <form method="POST" onSubmit={handleSubmit}>
+          <input
               type="email"
               name="email"
-              value={email}
+              id="email"
               placeholder="Email Address"
-              onChange={(e) => setEmail(e.target.value)}
+              value={values.email}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              className={errors.email  && touched.email ? `${styles.inputError}` : ''}
             />
             <div className={styles.errorText}>
-              <small>email is required!</small>
+            {errors.email && touched.email && <small>{errors.email}</small>}
             </div>
             <input
               type="password"
               name="password"
-              value={password}
               placeholder="Password"
-              onChange={(e) => setPassword(e.target.value)}
+              id="password"
+              value={values.password}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              className={errors.password && touched.password ? `${styles.inputError}` : ''}
             />
-            <div className="error-text">
-              <small>password is required!</small>
-            </div>
             <div className={styles.errorText}>
+            {errors.password && touched.password && <small>{errors.password}</small>}
+            </div>
+            <div>
               <small>Forget Password?</small>
             </div>
-            <Link to="/">
               <Button
                 textcolor="var(--text-light)"
                 type="submit"
@@ -86,7 +93,6 @@ export default function SignIn() {
               >
                 SIGN IN
               </Button>
-            </Link>
             <div style={{ textAlign: "left" }}>
               <p>
                 Dont have an account?
@@ -108,48 +114,4 @@ export default function SignIn() {
   );
 }
 
-{
-  /* <form method="POST" onSubmit={handleSignIn}>
-<input
-  type="email"
-  name="email"
-  value={email}
-  placeholder="Email Address"
-  onChange={(e) => setEmail(e.target.value)}
-/>
-<div className="error-text">
-  <small>email is required!</small>
-</div>
-<input
-  type="password"
-  name="password"
-  value={password}
-  placeholder="Password"
-  onChange={(e) => setPassword(e.target.value)}
-/>
-<div className="error-text">
-  <small>password is required!</small>
-</div>
-<div className="validate text-start">
-  <small>Forget Password?</small>
-</div>
-<Link to="/">
-  <button type="submit" className="submit-btn">
-    SIGN IN
-  </button>
-</Link>
-<div style={{ textAlign: "left" }}>
-  <p>
-    Dont have an account?
-    <span
-      style={{ color: "#388ddc", cursor: "pointer" }}
-      className="sign-in-btn"
-    >
-      <Link to="/signup">
-        <b> Sign Up</b>
-      </Link>
-    </span>
-  </p>
-</div>
-</form> */
-}
+

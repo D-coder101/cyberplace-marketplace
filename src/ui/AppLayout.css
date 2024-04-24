@@ -265,6 +265,7 @@ body.active-modal {
 }
 
 /*shipping*/
+/*
 .shipping-container {
   max-width: 100%;
   padding: 30px 110px;
@@ -318,7 +319,10 @@ body.active-modal {
   justify-content: space-between;
   width: 100%;
 }
+*/
+
 /* payment icons styling*/
+/*
 .payment--icons-main-container {
   display: flex;
   width: 100%;
@@ -334,7 +338,8 @@ body.active-modal {
 .payment--icons-container div {
   margin-right: 10px;
 }
-/*payment form styling*/
+*/
+/* payment form styling */
 .payment--form-row {
   padding: 10px 10px;
   box-shadow: 0px 4px 16px 0px #0b6d9e66;
@@ -356,6 +361,7 @@ body.active-modal {
   border: none;
   margin-bottom: 25px;
 }
+
 
 /* vendor-info */
 .vendor-container {
@@ -473,14 +479,9 @@ body.active-modal {
   grid-template-columns: repeat(2, 1fr);
 }
 .select-details div {
-  /* background-color: var(--bg-light); */
   border-radius: 4px;
-  /* /* margin-right: 10px; */
-  /* padding: 20px 50px; */
   display: flex;
-  /* flex-direction: column; */
   justify-content: space-between;
-  /* align-items: center; */
   color: var(--text-white);
 }
 .profile,
@@ -495,9 +496,6 @@ body.active-modal {
   gap: 10px;
   padding: 20px 60px 6px 60px;
 }
-/* .profile {
-  margin-bottom: -3px;
-} */
 @media (max-width: 768px) {
   .customer-profile {
     grid-template-areas:
